@@ -98,7 +98,7 @@ public class Prostor {
      * Metoda odebere věc ze seznamu věcí, které jsou v prostoru a odkaz na ni vrátí.
      * V případě, že věc nenajde, vrací null.
      * 
-     * @param String nazevVeci: název, který věc identifikuje,
+     * @param nazevVeci: název, který věc identifikuje,
      *          jde o věc, kterou chceme z prostoru odstranit
      * @return Vec: odebraná věc
      */
@@ -131,7 +131,7 @@ public class Prostor {
      * Tato metoda nastaví zadanou věc (pokud je v prostoru) jako viditelnou.
      * Je-li věc už viditelná, nic se nezmění.
      * 
-     * @param Vec neco: věc, kterou chceme zviditelnit
+     * @param neco: věc, kterou chceme zviditelnit
      */
     
     public void ukazVec(Vec neco) {
@@ -198,6 +198,9 @@ public class Prostor {
         return nazev;       
     }
 
+    public String getPopis() {
+        return popis;
+    }
     /**
      * Vrací "dlouhý" popis prostoru, který obsahuje i popis východů,
      * věcí a postavy v prostoru.

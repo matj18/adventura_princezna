@@ -35,17 +35,17 @@ public class HerniPlan {
      */
     private void zalozProstoryHry() {
         // vytvářejí se jednotlivé prostory
-        Prostor nadvori = new Prostor("nádvoří","na nádvoří zámku, odkud pochází");
-        Prostor trziste = new Prostor("tržiště", "na tržišti, kde může sehnat různé věci");
-        Prostor les = new Prostor("les","v lese, kde se dají sbírat houby");
-        Prostor brehReky = new Prostor("břeh_řeky","na břehu řeky");
-        Prostor paloucek = new Prostor("palouček","na paloučku, kde bydlí víla");
-        Prostor lesniCesta = new Prostor("lesní_cesta","na lesní cestě, která vede k mostu");
-        Prostor most = new Prostor("most","na mostě přes řeku");
-        Prostor schodiste = new Prostor("schodiště","na kamenném schodišti, které vede ke hradu");
-        Prostor brana = new Prostor("brána","v bráně, kam se neměla dostat");
-        Prostor dvirka = new Prostor("dvířka","v tajných dveřích do komnaty");
-        Prostor komnata = new Prostor("komnata","v komnatě, kde se nachází čaroděj." + "\n"
+        Prostor nadvori = new Prostor("nádvoří","nádvoří zámku, odkud princezna pochází");
+        Prostor trziste = new Prostor("tržiště", "tržiště, kde lze sehnat různé věci");
+        Prostor les = new Prostor("les","les, kde se dají sbírat houby");
+        Prostor brehReky = new Prostor("břeh_řeky","kamenitý břeh řeky");
+        Prostor paloucek = new Prostor("palouček","palouček, kde bydlí víla");
+        Prostor lesniCesta = new Prostor("lesní_cesta","lesní cesta, která vede k mostu");
+        Prostor most = new Prostor("most","most přes řeku");
+        Prostor schodiste = new Prostor("schodiště","kamenné schodiště, které vede ke hradu");
+        Prostor brana = new Prostor("brána","brána, kam by se princezna neměla nikdy dostat");
+        Prostor dvirka = new Prostor("dvířka","tajné dveře do komnaty");
+        Prostor komnata = new Prostor("komnata","komnata, kde se nachází čaroděj." + "\n"
         + "Pokud má princezna v brašně všechny potřebné přísady, může poprosit čaroděje, aby prince pustil");
         
         //zamceni prostorů

@@ -40,7 +40,7 @@ public class Controller {
         System.out.println(hra.getHerniPlan().getAktualniProstor().getNazev());
 
         jmenoLokace.setText(prostor.getNazev());
-        popisLokace.setText(prostor.dlouhyPopis());
+        popisLokace.setText(prostor.getPopis());
 
         //String nazevObrazku = "/" + prostor.getNazev() + ".jpg";
         String nazevObrazku = "/" + "domecek" + ".jpg";
