@@ -50,8 +50,8 @@ public class Controller {
         pridejVychody(prostor);
         pridejPredmety(prostor);
     }
-
     private void pridejVychody(Prostor prostor) {
+        seznamVychodu.setSpacing(5);
         seznamVychodu.getChildren().clear();
         for (Prostor p : prostor.getVychody()) {
             HBox vychod = new HBox();
@@ -61,6 +61,7 @@ public class Controller {
             ImageView vychodImageView = new ImageView();
             //Image vychodImage = new Image(getClass().getClassLoader().getResourceAsStream("\\" + p.getNazev() + ".jpg"));
             Image vychodImage = new Image(getClass().getClassLoader().getResourceAsStream("\\" + "les" + ".jpg"));
+
             vychodImageView.setFitHeight(VYSKA_IKONY);
             vychodImageView.setFitWidth(SIRKA_IKONY);
             vychodImageView.setImage(vychodImage);
@@ -70,41 +71,59 @@ public class Controller {
 
             seznamVychodu.getChildren().add(vychod);
             vychod.setOnMouseClicked(event -> {
-                if (!p.jeZamceno()) {
-                    zmenProstor(p);
-                }
-                if (p.getNazev().equals("dvířka") && hra.zpracujPrikaz("brašna").contains("klíč")) {
-                    p.setZamceno(false);
-                    zmenProstor(p);
-                }
+                zmenProstor(p);
             });
         }
     }
 
     private void pridejPredmety(Prostor prostor) {
         seznamPredmetuVMistnosti.getChildren().clear();
+        seznamPredmetuVMistnosti.setSpacing(5);
 
         for (Vec vec : prostor.getSeznamVeci()) {
-           pridejPredmetDoMistnosti(vec);
+            pridejPredmetDoMistnosti(vec);
         }
     }
 
     private void pridejPredmetDoMistnosti(Vec vec) {
-        Label nazevVeci = new Label(vec.getNazev());
-        seznamPredmetuVMistnosti.getChildren().add(nazevVeci);
-        nazevVeci.setOnMouseClicked(event -> {
+        HBox predmet = vytvorHBoxPredmet(vec);
+
+        seznamPredmetuVMistnosti.getChildren().add(predmet);
+
+        predmet.setOnMouseClicked(event -> {
             if (vec.jePrenositelnost()) {
                 hra.zpracujPrikaz("seber " + vec.getNazev());
-                Label vecVBatohu = new Label(vec.getNazev());
+                HBox vecVBatohu = vytvorHBoxPredmet(vec);
+                seznamPredmetuVBatohu.setSpacing(5);
                 seznamPredmetuVBatohu.getChildren().add(vecVBatohu);
-                seznamPredmetuVMistnosti.getChildren().remove(nazevVeci);
+                //pridejPredmety(hra.getHerniPlan().getAktualniProstor());
+                seznamPredmetuVMistnosti.getChildren().remove(predmet);
 
                 vecVBatohu.setOnMouseClicked(event1 -> {
-                    hra.zpracujPrikaz("vyhoď "+ vec.getNazev());
+                    hra.zpracujPrikaz("vyhoď "+vec.getNazev());
                     seznamPredmetuVBatohu.getChildren().remove(vecVBatohu);
                     pridejPredmetDoMistnosti(vec);
+
                 });
             }
         });
+    }
+
+    private HBox vytvorHBoxPredmet(Vec vec) {
+        HBox predmet = new HBox();
+        predmet.setSpacing(10);
+        Label nazevVeci = new Label(vec.getNazev());
+
+        ImageView predmetImageView = new ImageView();
+        //Image predmetImage = new Image(getClass().getClassLoader().getResourceAsStream("\\" + vec.getNazev() + ".jpg"));
+        Image predmetImage = new Image(getClass().getClassLoader().getResourceAsStream("\\" + "maliny" + ".jpg"));
+        predmetImageView.setFitHeight(VYSKA_IKONY);
+        predmetImageView.setFitWidth(SIRKA_IKONY);
+        predmetImageView.setImage(predmetImage);
+
+
+        predmet.getChildren().addAll(predmetImageView, nazevVeci);
+
+        return predmet;
     }
 }
