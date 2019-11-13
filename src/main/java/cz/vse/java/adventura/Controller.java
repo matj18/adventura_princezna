@@ -42,8 +42,8 @@ public class Controller {
         jmenoLokace.setText(prostor.getNazev());
         popisLokace.setText(prostor.getPopis());
 
-        //String nazevObrazku = "/" + prostor.getNazev() + ".jpg";
-        String nazevObrazku = "/" + "domecek" + ".jpg";
+        String nazevObrazku = "/" + prostor.getNazev() + ".jpg";
+        //String nazevObrazku = "/" + "domecek" + ".jpg";
         Image image = new Image(getClass().getResourceAsStream(nazevObrazku));
         obrazekLokace.setImage(image);
 
@@ -59,8 +59,8 @@ public class Controller {
             Label nazevProstoru = new Label(p.getNazev());
 
             ImageView vychodImageView = new ImageView();
-            //Image vychodImage = new Image(getClass().getClassLoader().getResourceAsStream("\\" + p.getNazev() + ".jpg"));
-            Image vychodImage = new Image(getClass().getClassLoader().getResourceAsStream("\\" + "les" + ".jpg"));
+            Image vychodImage = new Image(getClass().getClassLoader().getResourceAsStream("\\" + p.getNazev() + ".jpg"));
+            //Image vychodImage = new Image(getClass().getClassLoader().getResourceAsStream("\\" + "les" + ".jpg"));
             vychodImageView.setFitHeight(VYSKA_IKONY);
             vychodImageView.setFitWidth(SIRKA_IKONY);
             vychodImageView.setImage(vychodImage);
@@ -69,7 +69,7 @@ public class Controller {
 
             if (p.jeZamceno()) {
                 ImageView zamcenoImageView = new ImageView();
-                Image zamcenoImage = new Image(getClass().getClassLoader().getResourceAsStream("\\klic.jpg"));
+                Image zamcenoImage = new Image(getClass().getClassLoader().getResourceAsStream("\\zamceno.jpg"));
                 zamcenoImageView.setFitHeight(25);
                 zamcenoImageView.setFitWidth(25);
                 zamcenoImageView.setImage(zamcenoImage);
