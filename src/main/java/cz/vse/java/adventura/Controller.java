@@ -71,7 +71,13 @@ public class Controller {
 
             seznamVychodu.getChildren().add(vychod);
             vychod.setOnMouseClicked(event -> {
-                zmenProstor(p);
+                if (!p.jeZamceno()) {
+                    zmenProstor(p);
+                }
+                if (p.getNazev().equals("dvířka") && hra.zpracujPrikaz("brašna").contains("klíč")) {
+                    p.setZamceno(false);
+                    zmenProstor(p);
+                }
             });
         }
     }
