@@ -3,57 +3,61 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.StackPane?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
-
-<?import javafx.geometry.Insets?>
+<?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<StackPane prefHeight="600.0" prefWidth="800.0"
-           xmlns="http://javafx.com/javafx/11.0.1"
-           xmlns:fx="http://javafx.com/fxml/1"
-           fx:controller="cz.vse.java.adventura.Controller"
-           stylesheets="/styly.css"
->
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+
+<StackPane prefHeight="600.0" prefWidth="800.0" stylesheets="/styly.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cz.vse.java.adventura.Controller">
     <ImageView fx:id="obrazekLokace" />
     <BorderPane>
         <bottom>
             <VBox alignment="CENTER" styleClass="kontejner">
-                <Label fx:id="jmenoLokace" styleClass="velky-nadpis"/>
-                <Label fx:id="popisLokace" styleClass="nadpis"/>
+                <Label fx:id="jmenoLokace" styleClass="velky-nadpis" />
+                <Label fx:id="popisLokace" styleClass="nadpis" />
             </VBox>
         </bottom>
-        <right>
-            <GridPane vgap="10">
-                <rowConstraints>
-                    <RowConstraints percentHeight="33"/>
-                    <RowConstraints percentHeight="33"/>
-                    <RowConstraints percentHeight="33"/>
-                </rowConstraints>
-                <columnConstraints>
-                    <ColumnConstraints prefWidth="200"/>
-                </columnConstraints>
-                <padding>
-                    <Insets top="10" bottom="10" left="10" right="10"/>
-                </padding>
-                <!--     Vychody           -->
-                <VBox GridPane.columnIndex="0" GridPane.rowIndex="0" styleClass="kontejner">
-                    <Label text="Východy" styleClass="nadpis"/>
-                    <VBox fx:id="seznamVychodu"/>
-                </VBox>
-                <!--     Predmety           -->
-                <VBox  GridPane.columnIndex="0" GridPane.rowIndex="1" styleClass="kontejner">
-                    <Label text="Předměty" styleClass="nadpis"/>
-                    <VBox fx:id="seznamPredmetuVMistnosti"/>
-                </VBox>
-                <!--     Batoh           -->
-                <VBox  GridPane.columnIndex="0" GridPane.rowIndex="2" styleClass="kontejner">
-                    <Label text="Batoh" styleClass="nadpis"/>
-                    <VBox fx:id="seznamPredmetuVBatohu"/>
-                </VBox>
-            </GridPane>
-        </right>
+      <left>
+          <GridPane prefHeight="555.0" prefWidth="228.0" BorderPane.alignment="CENTER">
+              <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+              <children>
+                  <!--     Predmety           -->
+                  <VBox styleClass="kontejner">
+                      <Label styleClass="nadpis" text="Předměty" />
+                      <VBox fx:id="seznamPredmetuVMistnosti" />
+                  </VBox>
+                  <!--     Batoh           -->
+                  <VBox styleClass="kontejner" GridPane.rowIndex="1">
+                      <Label styleClass="nadpis" text="Batoh" />
+                      <VBox fx:id="seznamPredmetuVBatohu" />
+                  </VBox>
+              </children>
+          </GridPane>
+      </left>
+      <right>
+         <GridPane prefHeight="555.0" prefWidth="228.0" BorderPane.alignment="CENTER">
+           <columnConstraints>
+             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+           </columnConstraints>
+           <rowConstraints>
+             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+           </rowConstraints>
+            <children>
+                   <!--     Vychody           -->
+                   <VBox styleClass="kontejner">
+                       <Label styleClass="nadpis" text="Východy" />
+                       <VBox fx:id="seznamVychodu" />
+                   </VBox>
+            </children>
+         </GridPane>
+      </right>
     </BorderPane>
 </StackPane>

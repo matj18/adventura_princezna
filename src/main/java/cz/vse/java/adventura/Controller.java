@@ -70,7 +70,13 @@ public class Controller {
 
             seznamVychodu.getChildren().add(vychod);
             vychod.setOnMouseClicked(event -> {
-                zmenProstor(p);
+                if (!p.jeZamceno()) {
+                    zmenProstor(p);
+                }
+                if (p.getNazev().equals("dvířka") && hra.zpracujPrikaz("brašna").contains("klíč")) {
+                    p.setZamceno(false);
+                    zmenProstor(p);
+                }
             });
         }
     }
@@ -94,7 +100,7 @@ public class Controller {
                 seznamPredmetuVMistnosti.getChildren().remove(nazevVeci);
 
                 vecVBatohu.setOnMouseClicked(event1 -> {
-                    hra.zpracujPrikaz("vyhoď "+vec.getNazev());
+                    hra.zpracujPrikaz("vyhoď "+ vec.getNazev());
                     seznamPredmetuVBatohu.getChildren().remove(vecVBatohu);
                     pridejPredmetDoMistnosti(vec);
                 });

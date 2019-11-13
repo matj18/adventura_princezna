@@ -69,6 +69,7 @@ public class HerniPlan {
         most.setVychod(schodiste);
         schodiste.setVychod(brana);
         schodiste.setVychod(dvirka);
+        schodiste.setVychod(most);
         brana.setVychod(schodiste);
         dvirka.setVychod(schodiste);
         dvirka.setVychod(komnata);
