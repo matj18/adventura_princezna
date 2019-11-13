@@ -11,8 +11,8 @@ import javafx.scene.layout.VBox;
 
 public class Controller {
 
-    public static final int SIRKA_IKONY = 45;
-    public static final int VYSKA_IKONY = 30;
+    private static final int SIRKA_IKONY = 45;
+    private static final int VYSKA_IKONY = 30;
 
     @FXML
     private VBox seznamVychodu;
@@ -61,13 +61,21 @@ public class Controller {
             ImageView vychodImageView = new ImageView();
             //Image vychodImage = new Image(getClass().getClassLoader().getResourceAsStream("\\" + p.getNazev() + ".jpg"));
             Image vychodImage = new Image(getClass().getClassLoader().getResourceAsStream("\\" + "les" + ".jpg"));
-
             vychodImageView.setFitHeight(VYSKA_IKONY);
             vychodImageView.setFitWidth(SIRKA_IKONY);
             vychodImageView.setImage(vychodImage);
 
-
             vychod.getChildren().addAll(vychodImageView, nazevProstoru);
+
+            if (p.jeZamceno()) {
+                ImageView zamcenoImageView = new ImageView();
+                Image zamcenoImage = new Image(getClass().getClassLoader().getResourceAsStream("\\klic.jpg"));
+                zamcenoImageView.setFitHeight(25);
+                zamcenoImageView.setFitWidth(25);
+                zamcenoImageView.setImage(zamcenoImage);
+                vychod.getChildren().add(zamcenoImageView);
+
+            }
 
             seznamVychodu.getChildren().add(vychod);
             vychod.setOnMouseClicked(event -> {
