@@ -95,7 +95,9 @@ public class Controller {
         seznamPredmetuVMistnosti.setSpacing(5);
 
         for (Vec vec : prostor.getSeznamVeci()) {
-            pridejPredmetDoMistnosti(vec);
+            if (vec.jeViditelnost()) {
+                pridejPredmetDoMistnosti(vec);
+            }
         }
     }
 
@@ -105,7 +107,7 @@ public class Controller {
         seznamPredmetuVMistnosti.getChildren().add(predmet);
 
         predmet.setOnMouseClicked(event -> {
-            if (vec.jePrenositelnost()) {
+            if (vec.jePrenositelnost() && seznamPredmetuVBatohu.getChildren().size() < 5) {
                 hra.zpracujPrikaz("seber " + vec.getNazev());
                 HBox vecVBatohu = vytvorHBoxPredmet(vec);
                 seznamPredmetuVBatohu.setSpacing(5);
@@ -129,8 +131,8 @@ public class Controller {
         Label nazevVeci = new Label(vec.getNazev());
 
         ImageView predmetImageView = new ImageView();
-        //Image predmetImage = new Image(getClass().getClassLoader().getResourceAsStream("\\" + vec.getNazev() + ".jpg"));
-        Image predmetImage = new Image(getClass().getClassLoader().getResourceAsStream("\\" + "maliny" + ".jpg"));
+        Image predmetImage = new Image(getClass().getClassLoader().getResourceAsStream("\\" + vec.getNazev() + ".jpg"));
+        //Image predmetImage = new Image(getClass().getClassLoader().getResourceAsStream("\\" + "maliny" + ".jpg"));
         predmetImageView.setFitHeight(VYSKA_IKONY);
         predmetImageView.setFitWidth(SIRKA_IKONY);
         predmetImageView.setImage(predmetImage);

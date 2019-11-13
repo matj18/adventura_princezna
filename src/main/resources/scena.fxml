@@ -9,6 +9,7 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
+<?import javafx.geometry.Insets?>
 <StackPane prefHeight="600.0" prefWidth="800.0" stylesheets="/styly.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cz.vse.java.adventura.Controller">
     <ImageView fx:id="obrazekLokace" />
     <BorderPane>
@@ -19,10 +20,13 @@
             </VBox>
         </bottom>
       <left>
-          <GridPane prefHeight="555.0" prefWidth="228.0" BorderPane.alignment="CENTER">
+          <GridPane prefHeight="555.0" prefWidth="228.0" BorderPane.alignment="CENTER" vgap="10">
               <columnConstraints>
                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
               </columnConstraints>
+              <padding>
+                  <Insets top="10" bottom="10" left="10" right="10"/>
+              </padding>
               <rowConstraints>
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -42,10 +46,14 @@
           </GridPane>
       </left>
       <right>
-         <GridPane prefHeight="555.0" prefWidth="228.0" BorderPane.alignment="CENTER">
+         <GridPane prefHeight="555.0" prefWidth="228.0" BorderPane.alignment="CENTER" vgap="10">
            <columnConstraints>
              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+
            </columnConstraints>
+             <padding>
+                 <Insets top="10" bottom="10" left="10" right="10"/>
+             </padding>
            <rowConstraints>
              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
