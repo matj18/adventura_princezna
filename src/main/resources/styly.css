@@ -4,7 +4,6 @@
 }
 
 .kontejner:hover {
-    -fx-background-color: rgba(255,255, 255, 0.7);
 }
 
 .nadpis {
@@ -13,4 +12,8 @@
 
 .velky-nadpis {
     -fx-font-size: 24;
+}
+
+#polozka:hover {
+    -fx-background-color: rgba(255,255, 255, 0.7);
 }

@@ -2,6 +2,7 @@ package cz.vse.java.adventura;
 
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.geometry.Insets;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -59,10 +60,12 @@ public class Controller {
         pridejPostavu(prostor);
     }
     private void pridejVychody(Prostor prostor) {
-        seznamVychodu.setSpacing(5);
+        //seznamVychodu.setSpacing(5);
         seznamVychodu.getChildren().clear();
         for (Prostor p : prostor.getVychody()) {
             HBox vychod = new HBox();
+            vychod.setId("polozka");
+            vychod.setPadding(new Insets(4, 4, 4, 5));
             vychod.setSpacing(10);
             Label nazevProstoru = new Label(p.getNazev());
 
@@ -100,7 +103,7 @@ public class Controller {
 
     private void pridejPredmety(Prostor prostor) {
         seznamPredmetuVMistnosti.getChildren().clear();
-        seznamPredmetuVMistnosti.setSpacing(5);
+        //seznamPredmetuVMistnosti.setSpacing(5);
 
         for (Vec vec : prostor.getSeznamVeci()) {
             if (vec.jeViditelnost()) {
@@ -111,6 +114,8 @@ public class Controller {
 
     private void pridejPredmetDoMistnosti(Vec vec) {
         HBox predmet = vytvorHBoxPredmet(vec);
+        predmet.setId("polozka");
+        predmet.setPadding(new Insets(4, 4, 4, 5));
 
         seznamPredmetuVMistnosti.getChildren().add(predmet);
 
@@ -118,7 +123,9 @@ public class Controller {
             if (vec.jePrenositelnost() && seznamPredmetuVBatohu.getChildren().size() < 5) {
                 hra.zpracujPrikaz("seber " + vec.getNazev());
                 HBox vecVBatohu = vytvorHBoxPredmet(vec);
-                seznamPredmetuVBatohu.setSpacing(5);
+                vecVBatohu.setId("polozka");
+                vecVBatohu.setPadding(new Insets(4, 4, 4, 5));
+                //seznamPredmetuVBatohu.setSpacing(5);
                 seznamPredmetuVBatohu.getChildren().add(vecVBatohu);
                 //pridejPredmety(hra.getHerniPlan().getAktualniProstor());
                 seznamPredmetuVMistnosti.getChildren().remove(predmet);
