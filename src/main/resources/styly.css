@@ -8,12 +8,29 @@
 
 .nadpis {
     -fx-font-size: 18;
+    -fx-font-family: "Franklin Gothic Medium";
 }
 
 .velky-nadpis {
     -fx-font-size: 24;
+    -fx-font-family: "Franklin Gothic Medium";
+
+}
+
+#jmenoPostavy {
+    -fx-font-size: 16;
+    -fx-font-family: "Franklin Gothic Medium";
+}
+
+#polozka {
+    -fx-font-family: "Franklin Gothic Medium";
 }
 
 #polozka:hover {
     -fx-background-color: rgba(255,255, 255, 0.7);
+}
+
+.button {
+    -fx-font-family: "Franklin Gothic Medium";
+    -fx-end-margin: 10;
 }

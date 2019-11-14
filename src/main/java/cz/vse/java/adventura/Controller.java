@@ -1,14 +1,10 @@
 package cz.vse.java.adventura;
 
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
@@ -35,17 +31,22 @@ public class Controller {
     private Label popisLokace;
     @FXML
     private Label jmenoLokace;
+    @FXML
+    private ChoiceBox<String> vyber;
+
+    private boolean promluveno = false;
 
     public void setHra(IHra hra) {
         this.hra = hra;
         HerniPlan herniPlan = hra.getHerniPlan();
         Prostor aktualniProstor = herniPlan.getAktualniProstor();
+        vyber.setVisible(false);
         zmenProstor(aktualniProstor);
     }
 
     private void zmenProstor(Prostor prostor) {
         hra.zpracujPrikaz("jdi " + prostor.getNazev());
-        System.out.println(hra.getHerniPlan().getAktualniProstor().getNazev());
+        //System.out.println(hra.getHerniPlan().getAktualniProstor().getNazev());
 
         jmenoLokace.setText(prostor.getNazev());
         popisLokace.setText(prostor.getPopis());
@@ -54,6 +55,13 @@ public class Controller {
         //String nazevObrazku = "/" + "domecek" + ".jpg";
         Image image = new Image(getClass().getResourceAsStream(nazevObrazku));
         obrazekLokace.setImage(image);
+
+        if (!(promluveno && prostor.getNazev().equals("tržiště"))) { // komnata
+            vyber.setVisible(false);
+        }
+        else {
+            vyber.setVisible(true);
+        }
 
         pridejVychody(prostor);
         pridejPredmety(prostor);
@@ -168,6 +176,7 @@ public class Controller {
             tlacitkoPromluv.setVisible(true);
             postava.setSpacing(10);
             Label jmenoPostavy = new Label(postavaVProstoru.getJmeno());
+            jmenoPostavy.setId("jmenoPostavy");
 
             ImageView postavaImageView = new ImageView();
             Image postavaImage = new Image(getClass().getClassLoader().getResourceAsStream("\\" + postavaVProstoru.getJmeno() + ".jpg"));
@@ -189,7 +198,22 @@ public class Controller {
                     vec.setViditelnost(true);
                 }
                 pridejPredmety(prostor);
+
+
+                //(postavaVProstoru.getJmeno().equals("čaroděj"))
+                if (postavaVProstoru.getJmeno().equals("kořenářka") && !promluveno) {
+                    promluveno = true;
+                    vyber.setVisible(true);
+                    vyber.getItems().clear();
+                    vyber.getItems().add("kočka");
+                    vyber.getItems().add("žába");
+                    vyber.getItems().add("ryba");
+
+                }
             });
+
+
+
 
 
 
