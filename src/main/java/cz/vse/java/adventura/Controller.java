@@ -2,12 +2,15 @@ package cz.vse.java.adventura;
 
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+
 
 public class Controller {
 
@@ -20,6 +23,10 @@ public class Controller {
     private VBox seznamPredmetuVMistnosti;
     @FXML
     private VBox seznamPredmetuVBatohu;
+    @FXML
+    private VBox postava;
+    @FXML
+    private Button tlacitkoPromluv;
     private IHra hra;
 
     public ImageView obrazekLokace;
@@ -49,6 +56,7 @@ public class Controller {
 
         pridejVychody(prostor);
         pridejPredmety(prostor);
+        pridejPostavu(prostor);
     }
     private void pridejVychody(Prostor prostor) {
         seznamVychodu.setSpacing(5);
@@ -141,5 +149,43 @@ public class Controller {
         predmet.getChildren().addAll(predmetImageView, nazevVeci);
 
         return predmet;
+    }
+
+    private void pridejPostavu(Prostor prostor) {
+        Postava postavaVProstoru = prostor.getPostava();
+        if (postavaVProstoru == null) {
+            tlacitkoPromluv.setVisible(false);
+            postava.getChildren().clear();
+        }
+        else {
+            tlacitkoPromluv.setVisible(true);
+            postava.setSpacing(10);
+            Label jmenoPostavy = new Label(postavaVProstoru.getJmeno());
+
+            ImageView postavaImageView = new ImageView();
+            Image postavaImage = new Image(getClass().getClassLoader().getResourceAsStream("\\" + postavaVProstoru.getJmeno() + ".jpg"));
+            //Image predmetImage = new Image(getClass().getClassLoader().getResourceAsStream("\\" + "maliny" + ".jpg"));
+            postavaImageView.setFitHeight(120);
+            postavaImageView.setFitWidth(180);
+            postavaImageView.setImage(postavaImage);
+
+            postava.getChildren().addAll(postavaImageView, jmenoPostavy);
+
+            tlacitkoPromluv.setOnMouseClicked(event -> {
+                Alert promluva = new Alert(Alert.AlertType.INFORMATION);
+                promluva.setTitle(postavaVProstoru.getJmeno());
+                promluva.setHeaderText(postavaVProstoru.getJmeno() + " říká:");
+                promluva.setContentText(postavaVProstoru.mluv());
+                promluva.show();
+
+                for (Vec vec : postavaVProstoru.getSeznam()) {
+                    vec.setViditelnost(true);
+                }
+                pridejPredmety(prostor);
+            });
+
+
+
+        }
     }
 }

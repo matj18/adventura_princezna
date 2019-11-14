@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
@@ -9,7 +11,6 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
-<?import javafx.geometry.Insets?>
 <StackPane prefHeight="600.0" prefWidth="800.0" stylesheets="/styly.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cz.vse.java.adventura.Controller">
     <ImageView fx:id="obrazekLokace" />
     <BorderPane>
@@ -20,12 +21,12 @@
             </VBox>
         </bottom>
       <left>
-          <GridPane prefHeight="555.0" prefWidth="228.0" BorderPane.alignment="CENTER" vgap="10">
+          <GridPane prefHeight="555.0" prefWidth="228.0" vgap="10" BorderPane.alignment="CENTER">
               <columnConstraints>
                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
               </columnConstraints>
               <padding>
-                  <Insets top="10" bottom="10" left="10" right="10"/>
+                  <Insets bottom="10" left="10" right="10" top="10" />
               </padding>
               <rowConstraints>
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -46,13 +47,13 @@
           </GridPane>
       </left>
       <right>
-         <GridPane prefHeight="555.0" prefWidth="228.0" BorderPane.alignment="CENTER" vgap="10">
+         <GridPane prefHeight="555.0" prefWidth="228.0" vgap="10" BorderPane.alignment="CENTER">
            <columnConstraints>
              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
 
            </columnConstraints>
              <padding>
-                 <Insets top="10" bottom="10" left="10" right="10"/>
+                 <Insets bottom="10" left="10" right="10" top="10" />
              </padding>
            <rowConstraints>
              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -64,6 +65,14 @@
                        <Label styleClass="nadpis" text="Východy" />
                        <VBox fx:id="seznamVychodu" />
                    </VBox>
+                <!--     Postava           -->
+               <VBox prefHeight="200.0" prefWidth="100.0" styleClass="kontejner" GridPane.rowIndex="1">
+                  <children>
+                     <Label styleClass="nadpis" text="Postava" />
+                      <VBox fx:id="postava" />
+                     <Button mnemonicParsing="false" text="Promluvit si" fx:id="tlacitkoPromluv"/>
+                  </children>
+               </VBox>
             </children>
          </GridPane>
       </right>

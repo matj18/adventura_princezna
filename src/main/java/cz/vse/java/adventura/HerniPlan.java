@@ -120,9 +120,14 @@ public class HerniPlan {
         korenarka.pridejVec(plankton);
         trziste.setPostava(korenarka);
         
+//        Postava vila = new Postava ("víla","Vítej na mém paloučku. Mám pro tebe jednu radu." + "\n"
+//        + "Na břehu řeky najdeš neviditelný klíč k čarodějovu hradu." + "\n"
+//        + "Jen se postav na břeh řeky a řekni, že ho chceš sebrat. Objeví se ti v brašně");
+//        paloucek.setPostava (vila);
+
         Postava vila = new Postava ("víla","Vítej na mém paloučku. Mám pro tebe jednu radu." + "\n"
-        + "Na břehu řeky najdeš neviditelný klíč k čarodějovu hradu." + "\n"
-        + "Jen se postav na břeh řeky a řekni, že ho chceš sebrat. Objeví se ti v brašně");
+                + "Na břehu řeky hledej klíč k čarodějovu hradu.");
+        vila.pridejVec(klic);
         paloucek.setPostava (vila);
         
         Postava carodej = new Postava ("čaroděj", "Vítej. Vidím, že prince opravdu chceš zachránit." + "\n"
