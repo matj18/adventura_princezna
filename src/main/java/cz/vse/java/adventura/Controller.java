@@ -51,27 +51,28 @@ public class Controller {
     }
 
     private void zmenProstor(Prostor prostor) {
-        hra.zpracujPrikaz("jdi " + prostor.getNazev());
-        //System.out.println(hra.getHerniPlan().getAktualniProstor().getNazev());
+        if (!hra.konecHry()) {
+            hra.zpracujPrikaz("jdi " + prostor.getNazev());
+            //System.out.println(hra.getHerniPlan().getAktualniProstor().getNazev());
 
-        jmenoLokace.setText(prostor.getNazev());
-        popisLokace.setText(prostor.getPopis());
+            jmenoLokace.setText(prostor.getNazev());
+            popisLokace.setText(prostor.getPopis());
 
-        String nazevObrazku = "/" + prostor.getNazev() + ".jpg";
-        //String nazevObrazku = "/" + "domecek" + ".jpg";
-        Image image = new Image(getClass().getResourceAsStream(nazevObrazku));
-        obrazekLokace.setImage(image);
+            String nazevObrazku = "/" + prostor.getNazev() + ".jpg";
+            //String nazevObrazku = "/" + "domecek" + ".jpg";
+            Image image = new Image(getClass().getResourceAsStream(nazevObrazku));
+            obrazekLokace.setImage(image);
 
-        if (!(promluveno && prostor.getNazev().equals("tržiště"))) { // komnata
-            vyberSTlacitkem.setVisible(false);
+            if (!(promluveno && prostor.getNazev().equals("tržiště"))) { // komnata
+                vyberSTlacitkem.setVisible(false);
+            } else {
+                vyberSTlacitkem.setVisible(true);
+            }
+
+            pridejVychody(prostor);
+            pridejPredmety(prostor);
+            pridejPostavu(prostor);
         }
-        else {
-            vyberSTlacitkem.setVisible(true);
-        }
-
-        pridejVychody(prostor);
-        pridejPredmety(prostor);
-        pridejPostavu(prostor);
     }
     private void pridejVychody(Prostor prostor) {
         //seznamVychodu.setSpacing(5);
@@ -194,7 +195,8 @@ public class Controller {
             postava.getChildren().addAll(postavaImageView, jmenoPostavy);
 
             tlacitkoPromluv.setOnMouseClicked(event -> {
-                Alert promluva = new Alert(Alert.AlertType.INFORMATION);
+                Alert promluva = new Alert(Alert.AlertType.NONE);
+                promluva.getDialogPane().getButtonTypes().add(ButtonType.OK);
                 promluva.setTitle(postavaVProstoru.getJmeno());
                 promluva.setHeaderText(postavaVProstoru.getJmeno() + " říká:");
                 promluva.setContentText(postavaVProstoru.mluv());
@@ -215,6 +217,40 @@ public class Controller {
                     vyber.getItems().add("žába");
                     vyber.getItems().add("ryba");
                     tlacitkoHadej.setOnMouseClicked(event1 -> {
+                        boolean maPrisady = (hra.zpracujPrikaz("brašna").contains("bylinky") && hra.zpracujPrikaz("brašna").contains("amulet") && hra.zpracujPrikaz("brašna").contains("modrá_houba") && hra.zpracujPrikaz("brašna").contains("pampeliška"));
+                        String zvire = "žába";
+                        String tip = vyber.getValue();
+                        if (tip == null) {
+                            Alert a = new Alert(Alert.AlertType.WARNING);
+                            a.setTitle("Chyba");
+                            a.setHeaderText("Je potřeba vybrat, do jakého zvířete byl princ zakletý.");
+                            a.show();
+                        }
+                        else {
+                            if (!maPrisady) {
+                                Alert a = new Alert(Alert.AlertType.WARNING);
+                                a.setTitle("Chyba");
+                                a.setHeaderText("Nemáš všechny přísady na lektvar!");
+                                a.show();
+                            }
+                            else { //ma prisady a ma tip
+                                if (tip.equals(zvire)) {
+                                    Alert a = new Alert(Alert.AlertType.NONE);
+                                    a.setTitle("Gratulujeme!");
+                                    a.setHeaderText("Povedlo se ti zachránit prince!");
+                                    a.getDialogPane().getButtonTypes().add(ButtonType.OK);
+                                    a.show();
+                                    hra.zpracujPrikaz("konec");
+                                }
+                                else { // ma prisady, ale spatny tip
+                                    Alert a = new Alert(Alert.AlertType.NONE);
+                                    a.setTitle("Ajaj!");
+                                    a.setHeaderText("To nebyl princ! Můžeš zkusit hádat znovu.");
+                                    a.getDialogPane().getButtonTypes().add(ButtonType.OK);
+                                    a.show();
+                                }
+                            }
+                        }
 
                     });
 

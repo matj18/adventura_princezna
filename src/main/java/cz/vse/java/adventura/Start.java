@@ -49,8 +49,8 @@ public class Start extends Application
         Controller controller = loader.getController();
         controller.setHra(hra);
 
-        primaryStage.setTitle("Zachrana prince");
-        InputStream iconStream = getClass().getResourceAsStream("/ikona.png");
+        primaryStage.setTitle("Záchrana prince");
+        InputStream iconStream = getClass().getResourceAsStream("/ikona.png"); //<a target="_blank" href="/icons/set/sword">Sword icon</a> by <a target="_blank" href="https://icons8.com">Icons8</a>
         Image icon = new Image(iconStream);
         primaryStage.getIcons().add(icon);
         primaryStage.show();
