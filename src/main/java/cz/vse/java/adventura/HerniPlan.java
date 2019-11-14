@@ -114,7 +114,7 @@ public class HerniPlan {
         + "Vím, co budeš potřebovat." + "\n"
         + "Čaroděj prince zaklel do nějakého zvířete a ty budeš muset uhodout, do kterého." + "\n"
         + "K proměně musíš mít kouzelné přísady." + "\n"
-        + "Vezmi si tyhle bylinky. Dále najdi amulet, pampelišku a modrou houbu");
+        + "Vezmi si tyhle bylinky. Dále najdi amulet, pampelišku a modrou houbu.");
         korenarka.pridejVec(bylinky);
         korenarka.pridejVec(zabiStehynka);
         korenarka.pridejVec(plankton);
@@ -132,7 +132,7 @@ public class HerniPlan {
         
         Postava carodej = new Postava ("čaroděj", "Vítej. Vidím, že prince opravdu chceš zachránit." + "\n"
         + "Dobrá tedy, dám ti šanci. Prince jsem zaklel buď do těla žáby, ryby, nebo kočky." + "\n"
-        + "Až budeš chtít, hádej");
+        + "Až budeš chtít, hádej, ale ujisti se, že máš všechny přísady na lektvar.");
         komnata.setPostava (carodej);
         
     }

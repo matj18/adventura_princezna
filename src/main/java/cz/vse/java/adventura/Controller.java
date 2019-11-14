@@ -5,6 +5,7 @@ import javafx.geometry.Insets;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
@@ -24,6 +25,9 @@ public class Controller {
     private VBox postava;
     @FXML
     private Button tlacitkoPromluv;
+    @FXML
+    private AnchorPane vyberSTlacitkem;
+
     private IHra hra;
 
     public ImageView obrazekLokace;
@@ -33,6 +37,8 @@ public class Controller {
     private Label jmenoLokace;
     @FXML
     private ChoiceBox<String> vyber;
+    @FXML
+    private Button tlacitkoHadej;
 
     private boolean promluveno = false;
 
@@ -40,7 +46,7 @@ public class Controller {
         this.hra = hra;
         HerniPlan herniPlan = hra.getHerniPlan();
         Prostor aktualniProstor = herniPlan.getAktualniProstor();
-        vyber.setVisible(false);
+        vyberSTlacitkem.setVisible(false);
         zmenProstor(aktualniProstor);
     }
 
@@ -57,10 +63,10 @@ public class Controller {
         obrazekLokace.setImage(image);
 
         if (!(promluveno && prostor.getNazev().equals("tržiště"))) { // komnata
-            vyber.setVisible(false);
+            vyberSTlacitkem.setVisible(false);
         }
         else {
-            vyber.setVisible(true);
+            vyberSTlacitkem.setVisible(true);
         }
 
         pridejVychody(prostor);
@@ -203,11 +209,14 @@ public class Controller {
                 //(postavaVProstoru.getJmeno().equals("čaroděj"))
                 if (postavaVProstoru.getJmeno().equals("kořenářka") && !promluveno) {
                     promluveno = true;
-                    vyber.setVisible(true);
+                    vyberSTlacitkem.setVisible(true);
                     vyber.getItems().clear();
                     vyber.getItems().add("kočka");
                     vyber.getItems().add("žába");
                     vyber.getItems().add("ryba");
+                    tlacitkoHadej.setOnMouseClicked(event1 -> {
+
+                    });
 
                 }
             });
