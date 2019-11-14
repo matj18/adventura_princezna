@@ -4,6 +4,9 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
@@ -86,5 +89,13 @@
             </children>
          </AnchorPane>
       </center>
+      <top>
+         <MenuBar BorderPane.alignment="CENTER" fx:id="MENUBAR">
+           <menus>
+             <Menu fx:id="menuNovaHra" mnemonicParsing="false" text="Nová hra" />
+             <Menu fx:id="menuNapoveda" mnemonicParsing="false" text="Nápověda" />
+           </menus>
+         </MenuBar>
+      </top>
     </BorderPane>
 </StackPane>

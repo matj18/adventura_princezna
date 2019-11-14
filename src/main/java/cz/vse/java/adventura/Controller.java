@@ -15,6 +15,7 @@ public class Controller {
     private static final int SIRKA_IKONY = 45;
     private static final int VYSKA_IKONY = 30;
 
+
     @FXML
     private VBox seznamVychodu;
     @FXML
@@ -40,6 +41,13 @@ public class Controller {
     @FXML
     private Button tlacitkoHadej;
 
+
+    @FXML
+    private Menu menuNapoveda;
+    @FXML
+    private Menu menuNovaHra;
+
+
     private boolean promluveno = false;
 
     public void setHra(IHra hra) {
@@ -47,7 +55,22 @@ public class Controller {
         HerniPlan herniPlan = hra.getHerniPlan();
         Prostor aktualniProstor = herniPlan.getAktualniProstor();
         vyberSTlacitkem.setVisible(false);
+        pripravMenu();
         zmenProstor(aktualniProstor);
+    }
+
+    private void pripravMenu() {
+        MenuItem menuSpustit = new MenuItem("Spustit");
+        menuNovaHra.getItems().add(menuSpustit);
+        menuSpustit.setOnAction(event -> {
+            System.out.println("Menu spusttit Selected");
+
+        });
+        MenuItem menuDoc = new MenuItem("dokumentace");
+        menuNapoveda.getItems().add(menuDoc);
+        menuDoc.setOnAction(event -> {
+            System.out.println("Menu doc Selected");
+        });
     }
 
     private void zmenProstor(Prostor prostor) {
@@ -57,13 +80,16 @@ public class Controller {
 
             jmenoLokace.setText(prostor.getNazev());
             popisLokace.setText(prostor.getPopis());
+            if (prostor.getNazev().equals("komnata")) {
+                popisLokace.setText("komnata, kde se nachází čaroděj");
+            }
 
             String nazevObrazku = "/" + prostor.getNazev() + ".jpg";
             //String nazevObrazku = "/" + "domecek" + ".jpg";
             Image image = new Image(getClass().getResourceAsStream(nazevObrazku));
             obrazekLokace.setImage(image);
 
-            if (!(promluveno && prostor.getNazev().equals("tržiště"))) { // komnata
+            if (!(promluveno && prostor.getNazev().equals("komnata"))) {
                 vyberSTlacitkem.setVisible(false);
             } else {
                 vyberSTlacitkem.setVisible(true);
@@ -208,8 +234,7 @@ public class Controller {
                 pridejPredmety(prostor);
 
 
-                //(postavaVProstoru.getJmeno().equals("čaroděj"))
-                if (postavaVProstoru.getJmeno().equals("kořenářka") && !promluveno) {
+                if (postavaVProstoru.getJmeno().equals("čaroděj") && !promluveno) {
                     promluveno = true;
                     vyberSTlacitkem.setVisible(true);
                     vyber.getItems().clear();
@@ -251,17 +276,9 @@ public class Controller {
                                 }
                             }
                         }
-
                     });
-
                 }
             });
-
-
-
-
-
-
         }
     }
 }

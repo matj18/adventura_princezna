@@ -53,6 +53,7 @@ public class Start extends Application
         InputStream iconStream = getClass().getResourceAsStream("/ikona.png"); //<a target="_blank" href="/icons/set/sword">Sword icon</a> by <a target="_blank" href="https://icons8.com">Icons8</a>
         Image icon = new Image(iconStream);
         primaryStage.getIcons().add(icon);
+
         primaryStage.show();
     }
 }
