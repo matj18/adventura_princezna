@@ -63,13 +63,19 @@ public class Controller {
         MenuItem menuSpustit = new MenuItem("Spustit");
         menuNovaHra.getItems().add(menuSpustit);
         menuSpustit.setOnAction(event -> {
-            System.out.println("Menu spusttit Selected");
-
+            //System.out.println("Menu spustit Selected");
+            this.hra = new Hra();
+            setHra(hra);
         });
         MenuItem menuDoc = new MenuItem("dokumentace");
         menuNapoveda.getItems().add(menuDoc);
         menuDoc.setOnAction(event -> {
             System.out.println("Menu doc Selected");
+            Alert a = new Alert(Alert.AlertType.NONE);
+            a.getDialogPane().getButtonTypes().add(ButtonType.OK);
+            a.setTitle("Nápověda");
+            a.setContentText("hgbj");
+            a.show();
         });
     }
 
@@ -281,4 +287,5 @@ public class Controller {
             });
         }
     }
+
 }
