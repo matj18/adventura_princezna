@@ -49,7 +49,7 @@ public class Controller {
     @FXML
     private Menu menuNovaHra;
 
-
+    private boolean prvniHra = true;
     private boolean promluveno = false;
     private String zvire;
 
@@ -58,7 +58,9 @@ public class Controller {
         HerniPlan herniPlan = hra.getHerniPlan();
         Prostor aktualniProstor = herniPlan.getAktualniProstor();
         vyberSTlacitkem.setVisible(false);
-        pripravMenu();
+        if (prvniHra) {
+            pripravMenu();
+        }
         seznamPredmetuVBatohu.getChildren().clear();
         nastavNahodneZvire();
         zmenProstor(aktualniProstor);
@@ -85,7 +87,7 @@ public class Controller {
                 zvire = "žába";
             }
         }
-        System.out.println(zvire);
+        //System.out.println(zvire);
     }
 
     private void pripravMenu() {
@@ -93,6 +95,7 @@ public class Controller {
         menuNovaHra.getItems().add(menuSpustit);
         menuSpustit.setOnAction(event -> {
             //System.out.println("Menu spustit Selected");
+            prvniHra = false;
             this.hra = new Hra();
             setHra(hra);
         });
@@ -103,7 +106,7 @@ public class Controller {
             Alert a = new Alert(Alert.AlertType.NONE);
             a.getDialogPane().getButtonTypes().add(ButtonType.OK);
             a.setTitle("Nápověda");
-            a.setContentText("Tvým úkolem je najít prince a osvobodit ho, pokud nevíš, jak na to, promluv si s kořenářkou. Najdeš ji na tržišti.");
+            a.setContentText("Tvým úkolem je najít prince a osvobodit ho. Pokud nevíš, jak na to, promluv si s kořenářkou. Najdeš ji na tržišti.");
             a.show();
         });
     }
@@ -133,6 +136,7 @@ public class Controller {
             pridejVychody(prostor);
             pridejPredmety(prostor);
             pridejPostavu(prostor);
+
         }
     }
     private void pridejVychody(Prostor prostor) {

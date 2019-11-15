@@ -6,7 +6,6 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
-<?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
@@ -45,7 +44,7 @@
                   </VBox>
                   <!--     Batoh           -->
                   <VBox styleClass="kontejner" GridPane.rowIndex="1">
-                      <Label styleClass="nadpis" text="Batoh" />
+                      <Label styleClass="nadpis" text="Batoh (max 5)" />
                       <VBox fx:id="seznamPredmetuVBatohu" />
                   </VBox>
               </children>
@@ -90,7 +89,7 @@
          </AnchorPane>
       </center>
       <top>
-         <MenuBar BorderPane.alignment="CENTER" fx:id="MENUBAR">
+         <MenuBar fx:id="MENUBAR" BorderPane.alignment="CENTER">
            <menus>
              <Menu fx:id="menuNovaHra" mnemonicParsing="false" text="Nová hra" />
              <Menu fx:id="menuNapoveda" mnemonicParsing="false" text="Nápověda" />
