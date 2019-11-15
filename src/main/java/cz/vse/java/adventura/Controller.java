@@ -99,7 +99,7 @@ public class Controller {
             this.hra = new Hra();
             setHra(hra);
         });
-        MenuItem menuDoc = new MenuItem("dokumentace");
+        MenuItem menuDoc = new MenuItem("ukázat");
         menuNapoveda.getItems().add(menuDoc);
         menuDoc.setOnAction(event -> {
             //System.out.println("Menu doc Selected");
@@ -158,13 +158,22 @@ public class Controller {
 
             vychod.getChildren().addAll(vychodImageView, nazevProstoru);
 
-            if (p.jeZamceno()) {
+            if (p.jeZamceno() && p.getNazev().equals("brána")) {
                 ImageView zamcenoImageView = new ImageView();
                 Image zamcenoImage = new Image(getClass().getClassLoader().getResourceAsStream("\\zamceno.jpg"));
                 zamcenoImageView.setFitHeight(25);
                 zamcenoImageView.setFitWidth(25);
                 zamcenoImageView.setImage(zamcenoImage);
                 vychod.getChildren().add(zamcenoImageView);
+            }
+
+            if (p.jeZamceno() && p.getNazev().equals("dvířka")) {
+                ImageView klicImageView = new ImageView();
+                Image klicImage = new Image(getClass().getClassLoader().getResourceAsStream("\\klíč.jpg"));
+                klicImageView.setFitHeight(25);
+                klicImageView.setFitWidth(25);
+                klicImageView.setImage(klicImage);
+                vychod.getChildren().add(klicImageView);
 
             }
 

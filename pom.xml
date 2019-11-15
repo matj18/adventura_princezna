@@ -6,7 +6,7 @@
 
     <groupId>cz.vse.java.adventura</groupId>
     <artifactId>princezna</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>1.0.0</version>
     <name>Princezna</name>
 
     <dependencies>
