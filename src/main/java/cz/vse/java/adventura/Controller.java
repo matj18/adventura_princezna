@@ -9,6 +9,8 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
+import java.util.Random;
+
 
 public class Controller {
 
@@ -49,6 +51,7 @@ public class Controller {
 
 
     private boolean promluveno = false;
+    private String zvire;
 
     public void setHra(IHra hra) {
         this.hra = hra;
@@ -56,7 +59,33 @@ public class Controller {
         Prostor aktualniProstor = herniPlan.getAktualniProstor();
         vyberSTlacitkem.setVisible(false);
         pripravMenu();
+        seznamPredmetuVBatohu.getChildren().clear();
+        nastavNahodneZvire();
         zmenProstor(aktualniProstor);
+        Alert a = new Alert(Alert.AlertType.NONE);
+        a.getDialogPane().getButtonTypes().add(ButtonType.OK);
+        a.setTitle("Vítej!");
+        a.setContentText("Tvým úkolem je najít prince a osvobodit ho, pokud nevíš, jak na to, promluv si s kořenářkou. Najdeš ji na tržišti.");
+        a.show();
+    }
+
+    private void nastavNahodneZvire() {
+        Random generator = new Random();
+        int cislo = generator.nextInt(3);
+        switch (cislo) {
+            case 0: {
+                zvire = "ryba";
+                break;
+            }
+            case 1: {
+                zvire = "kočka";
+                break;
+            }
+            default: {
+                zvire = "žába";
+            }
+        }
+        System.out.println(zvire);
     }
 
     private void pripravMenu() {
@@ -70,11 +99,11 @@ public class Controller {
         MenuItem menuDoc = new MenuItem("dokumentace");
         menuNapoveda.getItems().add(menuDoc);
         menuDoc.setOnAction(event -> {
-            System.out.println("Menu doc Selected");
+            //System.out.println("Menu doc Selected");
             Alert a = new Alert(Alert.AlertType.NONE);
             a.getDialogPane().getButtonTypes().add(ButtonType.OK);
             a.setTitle("Nápověda");
-            a.setContentText("hgbj");
+            a.setContentText("Tvým úkolem je najít prince a osvobodit ho, pokud nevíš, jak na to, promluv si s kořenářkou. Najdeš ji na tržišti.");
             a.show();
         });
     }
@@ -249,7 +278,6 @@ public class Controller {
                     vyber.getItems().add("ryba");
                     tlacitkoHadej.setOnMouseClicked(event1 -> {
                         boolean maPrisady = (hra.zpracujPrikaz("brašna").contains("bylinky") && hra.zpracujPrikaz("brašna").contains("amulet") && hra.zpracujPrikaz("brašna").contains("modrá_houba") && hra.zpracujPrikaz("brašna").contains("pampeliška"));
-                        String zvire = "žába";
                         String tip = vyber.getValue();
                         if (tip == null) {
                             Alert a = new Alert(Alert.AlertType.WARNING);
@@ -268,7 +296,7 @@ public class Controller {
                                 if (tip.equals(zvire)) {
                                     Alert a = new Alert(Alert.AlertType.NONE);
                                     a.setTitle("Gratulujeme!");
-                                    a.setHeaderText("Povedlo se ti zachránit prince!");
+                                    a.setHeaderText("Povedlo se ti zachránit prince! Novou hru můžeš spustit z menu nahoře.");
                                     a.getDialogPane().getButtonTypes().add(ButtonType.OK);
                                     a.show();
                                     hra.zpracujPrikaz("konec");
