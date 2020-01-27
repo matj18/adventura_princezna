@@ -8,6 +8,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
 
 import java.util.Random;
 
@@ -30,6 +31,8 @@ public class Controller {
     private Button tlacitkoPromluv;
     @FXML
     private AnchorPane vyberSTlacitkem;
+    @FXML
+    private Text komunikace;
 
     private IHra hra;
 
@@ -64,11 +67,7 @@ public class Controller {
         seznamPredmetuVBatohu.getChildren().clear();
         nastavNahodneZvire();
         zmenProstor(aktualniProstor);
-        Alert a = new Alert(Alert.AlertType.NONE);
-        a.getDialogPane().getButtonTypes().add(ButtonType.OK);
-        a.setTitle("Vítej!");
-        a.setContentText("Tvým úkolem je najít prince a osvobodit ho, pokud nevíš, jak na to, promluv si s kořenářkou. Najdeš ji na tržišti.");
-        a.show();
+        komunikace.setText("Vítej! Tvým úkolem je najít prince a osvobodit ho, pokud nevíš, jak na to, promluv si s kořenářkou. Najdeš ji na tržišti.");
     }
 
     private void nastavNahodneZvire() {

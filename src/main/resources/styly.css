@@ -11,7 +11,12 @@
 .velky-nadpis {
     -fx-font-size: 24;
     -fx-font-family: "Franklin Gothic Medium";
+}
 
+.text {
+    -fx-font-size: 18;
+    -fx-font-family: "Franklin Gothic Medium";
+    -fx-padding: 5px;
 }
 
 #jmenoPostavy {
