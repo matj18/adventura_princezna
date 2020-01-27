@@ -101,12 +101,7 @@ public class Controller {
         MenuItem menuDoc = new MenuItem("ukázat");
         menuNapoveda.getItems().add(menuDoc);
         menuDoc.setOnAction(event -> {
-            //System.out.println("Menu doc Selected");
-            Alert a = new Alert(Alert.AlertType.NONE);
-            a.getDialogPane().getButtonTypes().add(ButtonType.OK);
-            a.setTitle("Nápověda");
-            a.setContentText("Tvým úkolem je najít prince a osvobodit ho. Pokud nevíš, jak na to, promluv si s kořenářkou. Najdeš ji na tržišti.");
-            a.show();
+            komunikace.setText("Tvým úkolem je najít prince a osvobodit ho. Pokud nevíš, jak na to, promluv si s kořenářkou. Najdeš ji na tržišti.");
         });
     }
 
@@ -131,6 +126,8 @@ public class Controller {
             } else {
                 vyberSTlacitkem.setVisible(true);
             }
+
+            komunikace.setText("");
 
             pridejVychody(prostor);
             pridejPredmety(prostor);
@@ -268,13 +265,7 @@ public class Controller {
             postava.getChildren().addAll(postavaImageView, jmenoPostavy);
 
             tlacitkoPromluv.setOnMouseClicked(event -> {
-                Alert promluva = new Alert(Alert.AlertType.NONE);
-                promluva.getDialogPane().getButtonTypes().add(ButtonType.OK);
-                promluva.setTitle(postavaVProstoru.getJmeno());
-                promluva.setHeaderText(postavaVProstoru.getJmeno() + " říká:");
-                promluva.setContentText(postavaVProstoru.mluv());
-                promluva.show();
-
+                komunikace.setText(postavaVProstoru.getJmeno() + " říká: " + postavaVProstoru.mluv());
                 for (Vec vec : postavaVProstoru.getSeznam()) {
                     vec.setViditelnost(true);
                 }
